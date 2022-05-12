@@ -34,6 +34,12 @@ function operate(first, operator, second) {
 
 
 // 3. Make the buttons display the correct things upon clicking on them.
+let displayValues = {
+    first: "",
+    second: "",
+    op: "",
+};
+
 const displayTop = document.querySelector(".displaytop");
 const displayBottom = document.querySelector(".displaybottom");
 
@@ -47,8 +53,34 @@ numbers.forEach(numberBtn => {
     numberBtn.addEventListener("click", event => {
         let len = displayBottom.textContent.split("").length;
         console.log(len);
-        if (len <= 25) {
+        if (len < 13) {
            displayBottom.textContent += numberBtn.textContent;
         }
+
+        if (displayValues.op === "") {
+            displayValues.first = displayBottom.textContent;
+        } else {
+            displayValues.second = displayBottom.textContent;
+            console.log(displayValues);
+        }
     });
+});
+
+operators.forEach(operatorBtn => {
+    operatorBtn.addEventListener("click", event => {
+        displayValues.op = operatorBtn.textContent;
+
+        displayTop.textContent = `${displayValues.first} ${displayValues.op}`;
+        displayBottom.textContent = "";
+    });
+});
+
+clear.addEventListener("click", event => {
+    displayValues = {first: "", second: "", op: "",};
+    displayTop.textContent = "";
+    displayBottom.textContent = "";
+});
+
+equal.addEventListener("click", event => {
+    
 });
