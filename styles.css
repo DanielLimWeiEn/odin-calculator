@@ -98,4 +98,10 @@ body {
 
     color: #f9faf8;
     font-size: 36px;
+
+    transition: all 0.07s ease;
+}
+
+.numberpadElementClick {
+    background-color: #e5e7eb;
 }

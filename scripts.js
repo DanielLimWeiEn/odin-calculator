@@ -106,3 +106,15 @@ clear.addEventListener("click", event => {
 equal.addEventListener("click", event => {
     evaluateCurrent();
 });
+
+// 4. Get all the buttons.
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => {
+    button.addEventListener("click", event => {
+        button.classList.add("numberpadElementClick");
+    });
+
+    button.addEventListener("transitionend", event => {
+        button.classList.remove("numberpadElementClick");
+    });
+});
