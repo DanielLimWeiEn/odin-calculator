@@ -61,7 +61,7 @@ function evaluateCurrent() {
     let op = displayValues.op;
 
     if (first !== "" && second !== "" && op !== "") {
-        let result = operate(parseInt(first), op, parseInt(second));
+        let result = operate(parseFloat(first), op, parseFloat(second));
         if (parseInt(second) === 0 && op === "/") {
             result = "Divide by 0"
         }
