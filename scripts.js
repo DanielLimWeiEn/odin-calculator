@@ -49,10 +49,31 @@ const operators = document.querySelectorAll(".operator");
 const clear = document.querySelector(".clear");
 const equal = document.querySelector(".equal");
 
+function clearScreen() {
+    displayValues = {first: "", second: "", op: "",};
+    displayTop.textContent = "";
+    displayBottom.textContent = "";
+}
+
+function evaluateCurrent() {
+    let first = displayValues.first;
+    let second = displayValues.second;
+    let op = displayValues.op;
+
+    if (first !== "" && second !== "" && op !== "") {
+        let result = operate(parseInt(first), op, parseInt(second));
+        if (parseInt(second) === 0 && op === "/") {
+            result = "Divide by 0"
+        }
+        clearScreen();
+        displayBottom.textContent = result;
+        displayValues.first = result;
+    }
+}
+
 numbers.forEach(numberBtn => {
     numberBtn.addEventListener("click", event => {
         let len = displayBottom.textContent.split("").length;
-        console.log(len);
         if (len < 13) {
            displayBottom.textContent += numberBtn.textContent;
         }
@@ -61,26 +82,27 @@ numbers.forEach(numberBtn => {
             displayValues.first = displayBottom.textContent;
         } else {
             displayValues.second = displayBottom.textContent;
-            console.log(displayValues);
         }
     });
 });
 
 operators.forEach(operatorBtn => {
     operatorBtn.addEventListener("click", event => {
-        displayValues.op = operatorBtn.textContent;
+        if (displayValues.first !== "") {
+            evaluateCurrent();
+            displayValues.op = operatorBtn.textContent;
 
-        displayTop.textContent = `${displayValues.first} ${displayValues.op}`;
-        displayBottom.textContent = "";
+            displayTop.textContent = `${displayValues.first} ${displayValues.op}`;
+            displayBottom.textContent = "";  
+        }
+        
     });
 });
 
 clear.addEventListener("click", event => {
-    displayValues = {first: "", second: "", op: "",};
-    displayTop.textContent = "";
-    displayBottom.textContent = "";
+    clearScreen();
 });
 
 equal.addEventListener("click", event => {
-    
+    evaluateCurrent();
 });
