@@ -6,6 +6,8 @@
 body {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: 0;
     padding: 0;
     background-color: pink;
@@ -21,13 +23,49 @@ body {
     color: #1f2937;
     font-size: 48px;
     font-weight: bolder;
+    text-align: center;
 }
 
 .calculator {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 540px;
+    width: 440px;
+
+    background-color: #e5e7eb; /* Change this later */
+    color: #1f2937;
+    font-size: 24px;
+}
+
+.display {
+    display: flex;
+    
+    height: 100px;
+    width: 440px;
+}
+
+.numberpad {
+    display: flex;
+    flex-wrap: wrap;
+
+    height: 440px;
+    width: 440px;
+    margin: 0;
+    padding: 0;
+}
+
+.numberpadElement {
+    display: flex;
     justify-content: center;
     align-items: center;
 
-    color: #1f2937;
-    font-size: 24px;
+    background-color: #1f2937;
+    border: 0.5px solid;
+    border-color: #e5e7eb;
+}
+
+.row {
+    display: flex;
 }
